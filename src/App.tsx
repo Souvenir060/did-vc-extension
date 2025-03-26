@@ -13,8 +13,11 @@ function App() {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
 
-  // Backend API base URL
-  const API_BASE_URL = 'http://localhost:8080/api/vc'
+  // Backend API base URL - dynamically choose between local and cloud deployment
+  // 将在部署后端后更新为实际URL
+  const API_BASE_URL = process.env.NODE_ENV === 'production' 
+    ? 'https://did-vc-demo-api.onrender.com/api/vc'  // 我们将在部署后端后更新此URL
+    : 'http://localhost:8080/api/vc'                 // 本地开发URL
 
   // Create DID
   const createDid = async () => {
