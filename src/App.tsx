@@ -15,15 +15,15 @@ function App() {
 
   // Backend API base URL - dynamically choose between local and cloud deployment
   const API_BASE_URL = process.env.NODE_ENV === 'production' 
-    ? 'https://did-vc-demo-api.onrender.com/api/vc'  // Render.com部署的URL
-    : 'http://localhost:8080/api/vc'                 // 本地开发URL
+    ? 'https://did-vc-demo-api.onrender.com'        // Render.com部署的URL
+    : 'http://localhost:8080'                       // 本地开发URL
 
   // Create DID
   const createDid = async () => {
     setLoading(true)
     setError('')
     try {
-      const response = await fetch(`${API_BASE_URL}/create/${role}`)
+      const response = await fetch(`${API_BASE_URL}/api/vc/create/${role}`)
       const data = await response.text()
       setDid(data)
     } catch (err: any) {
@@ -45,7 +45,7 @@ function App() {
     try {
       const encodedDid = encodeURIComponent(did)
       const encodedSubject = encodeURIComponent(subject)
-      const response = await fetch(`${API_BASE_URL}/issue/${encodedDid}/${encodedSubject}`)
+      const response = await fetch(`${API_BASE_URL}/api/vc/issue/${encodedDid}/${encodedSubject}`)
       const data = await response.text()
       setVcId(data)
     } catch (err: any) {
@@ -66,7 +66,7 @@ function App() {
     setError('')
     try {
       const encodedVcId = encodeURIComponent(vcId)
-      const response = await fetch(`${API_BASE_URL}/verify/${encodedVcId}`)
+      const response = await fetch(`${API_BASE_URL}/api/vc/verify/${encodedVcId}`)
       const data = await response.text()
       setVerificationResult(data === 'true' ? 'Valid' : 'Invalid')
     } catch (err: any) {
@@ -88,7 +88,7 @@ function App() {
     try {
       const encodedDid = encodeURIComponent(did)
       const encodedVcId = encodeURIComponent(vcId)
-      const response = await fetch(`${API_BASE_URL}/get/${encodedDid}/${encodedVcId}`)
+      const response = await fetch(`${API_BASE_URL}/api/vc/get/${encodedDid}/${encodedVcId}`)
       const data = await response.text()
       setRetrievedVc(data)
     } catch (err: any) {
@@ -109,7 +109,7 @@ function App() {
     setError('')
     try {
       const encodedDid = encodeURIComponent(did)
-      const response = await fetch(`${API_BASE_URL}/role/${encodedDid}`)
+      const response = await fetch(`${API_BASE_URL}/api/vc/role/${encodedDid}`)
       const data = await response.text()
       setDidRole(data || 'Role not found')
     } catch (err: any) {
