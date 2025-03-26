@@ -10,4 +10,13 @@ export default defineConfig({
   plugins: [react()],
   // 在生产环境中设置基本路径为仓库名称
   base: process.env.NODE_ENV === 'production' ? `/${repoName}/` : '/',
+  server: {
+    proxy: {
+      '/api': {
+        target: 'http://localhost:8081',
+        changeOrigin: true,
+        secure: false
+      }
+    }
+  }
 })

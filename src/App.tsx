@@ -15,8 +15,8 @@ function App() {
 
   // Backend API base URL - dynamically choose between local and cloud deployment
   const API_BASE_URL = process.env.NODE_ENV === 'production' 
-    ? 'https://did-vc-demo-api.onrender.com'        // Render.com部署的URL
-    : 'http://localhost:8080'                       // 本地开发URL
+    ? 'https://did-vc-demo-api.onrender.com'  // Render.com部署的URL
+    : ''                                      // 使用相对路径，让Vite代理处理请求
 
   // Create DID
   const createDid = async () => {
