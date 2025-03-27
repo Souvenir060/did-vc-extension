@@ -1,54 +1,60 @@
-# React + TypeScript + Vite
+# DID and VC Extension Testbed
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A demonstration system for Decentralized Identifiers (DIDs), Verifiable Credentials (VCs), and Role-Based Access Control (RBAC).
 
-Currently, two official plugins are available:
+## Live Demo
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+The system is available for demonstration at:
+- [Live Demo on GitHub Pages](https://souvenir060.github.io/did-vc-extension/)
 
-## Expanding the ESLint configuration
+## Features
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+1. **DID Creation**: Create Decentralized Identifiers with different roles (professor/student)
+2. **VC Issuance**: Issue Verifiable Credentials linked to DIDs
+3. **VC Verification**: Verify the validity of credentials
+4. **RBAC**: Role-Based Access Control (professors can access VCs, students cannot)
+5. **Multiple Operating Modes**:
+   - Production mode: Connects to real backend on Render.com
+   - Local mode: Connects to locally running backend
+   - Mock mode: Runs without a backend, using simulated data (default on GitHub Pages)
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+## Using the Demo
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+When accessing the demo on GitHub Pages, the system automatically uses Mock Mode for demonstration purposes. This allows anyone to experience the full functionality without the need for a backend connection.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+To test with a real backend:
+1. Clone the repository
+2. Start the backend server
+3. Run the frontend app in development mode
+4. Switch to "Local Development" in the API Mode selector
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+## Implementation Details
+
+The system consists of:
+
+- **Frontend**: React.js application with TypeScript
+- **Backend**: Java Spring Boot API handling DID and VC operations
+- **Mock Mode**: Client-side simulation of backend functionality
+
+## Repository
+
+The source code is available at:
+[GitHub Repository](https://github.com/Souvenir060/did-vc-extension)
+
+## Development
+
+To run the project locally:
+
+```bash
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+
+# Build for production
+npm run build
+
+# Deploy to GitHub Pages
+npm run deploy
+``` 
